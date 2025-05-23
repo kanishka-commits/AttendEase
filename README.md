@@ -36,6 +36,3 @@ A simple automation tool for managing and joining scheduled online classes.
 * Add support for more meeting platforms and enhanced scheduling options.  
 * Implement more robust error handling and UI improvements.
 
----
-
-*Let me know if you want me to generate a sample `timetable.csv` or add license info!*
