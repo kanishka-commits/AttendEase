@@ -1,22 +1,22 @@
-# Logical imports
-from datetime import datetime
-import smtplib
-import time
-import sys
-import csv
-import os
-import platform
+from datetime import datetime   # Work with dates and times
+import smtplib                 # To send emails
+import time                    # For time-related functions like delays
+import sys                     # To exit the program
+import csv                     # To read CSV files (your timetable)
+import os                      # To interact with your operating system
+import platform                # To detect which OS you are using
 
-# UI imports
-import tkinter as tk
-from tkinter import filedialog, Text, messagebox
+import tkinter as tk           # To create graphical user interface (GUI)
+from tkinter import filedialog, Text, messagebox  # GUI elements like file picker, popup messages
 
 # --------------------------------------------------------------------------------------------------------------
 # Logical Code
 
-def send_mail(day, curr_time, link):
+
+# This function prepares an email saying what class you are attending and sends it.
+def send_mail(day, curr_time, link):    
     # NOTE: Replace EMAIL_HERE and PASSWORD_HERE with your credentials or better, use environment variables.
-    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    server = smtplib.SMTP_SSL('smtp.gmail.com', 465) #creates secure connection
     server.ehlo()
     server.login('EMAIL_HERE', 'PASSWORD_HERE')
 
@@ -31,6 +31,10 @@ def send_mail(day, curr_time, link):
     server.quit()
 
 def find_next_class(timetable_location, day):
+    # Reads your timetable CSV file.
+    # Checks the current time.
+    # Looks for the next class that hasn't started yet.
+    # If no classes left or "exit" is found, it stops the program.
     current_time = datetime.now().strftime("%H:%M")
     curr_time = time.strptime(current_time, "%H:%M")
 
@@ -56,6 +60,8 @@ def find_next_class(timetable_location, day):
     sys.exit()
 
 def open_link(link):
+    # Detects your operating system (Windows, macOS, Linux).
+    # Uses the correct command to open a link in the default browser or app.
     system = platform.system()
     if system == "Darwin":  # macOS
         os.system(f'open "{link}"')
@@ -65,6 +71,10 @@ def open_link(link):
         os.system(f'xdg-open "{link}"')
 
 def attend_class(timetable_location):
+    # Gets the current day of the week.
+    # Finds the next class and waits until it’s time.
+    # When time matches, opens the link to join the class.
+    # Optional: sends email notification (commented out).
     Weekdays = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
     day = datetime.today().weekday()
     print(Weekdays[day])
