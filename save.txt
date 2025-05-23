@@ -1,1 +1,1 @@
-/Users/kanishkapanwar/Desktop/VS Code/AttendEase/timetable.csv,
+/Users/kanishkapanwar/Desktop/VS Code/AttendEase/timetable.csv
